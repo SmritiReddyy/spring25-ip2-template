@@ -1,6 +1,7 @@
 import { Socket } from 'socket.io-client';
 
-export type FakeSOSocket = Socket<ServerToClientEvents, ClientToServerEvents>;
+// export type FakeSOSocket = Socket<ServerToClientEvents, ClientToServerEvents>;
+export type FakeSOSocket = SocketIOClient.Socket;
 
 /**
  * Represents the credentials required for user authentication (login or signup).

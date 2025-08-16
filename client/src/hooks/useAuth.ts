@@ -34,6 +34,7 @@ const useAuth = (authType: 'login' | 'signup') => {
    */
   const togglePasswordVisibility = () => {
     // TODO - Task 1: Toggle password visibility
+    setShowPassword(prevState => !prevState);
   };
 
   /**
@@ -47,6 +48,15 @@ const useAuth = (authType: 'login' | 'signup') => {
     field: 'username' | 'password' | 'confirmPassword',
   ) => {
     // TODO - Task 1: Handle input changes for the fields
+    const fieldText = e.target.value.trim();
+
+    if (field === 'username') {
+      setUsername(fieldText);
+    } else if (field === 'password') {
+      setPassword(fieldText);
+    } else if (field === 'confirmPassword') {
+      setPasswordConfirmation(fieldText);
+    }
   };
 
   /**
@@ -58,6 +68,17 @@ const useAuth = (authType: 'login' | 'signup') => {
   const validateInputs = (): boolean => {
     // TODO - Task 1: Validate inputs for login and signup forms
     // Display any errors to the user
+    if (username === '' || password === '') {
+      setErr('Please enter a username and password');
+      return false;
+    }
+
+    if (authType === 'signup' && password !== passwordConfirmation) {
+      setErr('Passwords do not match');
+      return false;
+    }
+
+    return true;
   };
 
   /**
@@ -70,18 +91,28 @@ const useAuth = (authType: 'login' | 'signup') => {
     event.preventDefault();
 
     // TODO - Task 1: Validate inputs
-
+    if (!validateInputs()) {
+      return;
+    }
     let user: User;
 
     try {
       // TODO - Task 1: Handle the form submission, calling appropriate API routes
       // based on the auth type
+      if (authType === 'signup') {
+        user = await createUser({ username, password });
+      } else if (authType === 'login') {
+        user = await loginUser({ username, password });
+      } else {
+        throw new Error('Invalid auth type');
+      }
 
       // Redirect to home page on successful login/signup
       setUser(user);
       navigate('/home');
     } catch (error) {
       // TODO - Task 1: Display error message
+      setErr((error as Error).message);
     }
   };
 

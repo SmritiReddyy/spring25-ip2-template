@@ -30,7 +30,8 @@ const Header = () => {
       </button>
       <button
         className='view-profile-button'
-        onClick={() => navigate(`/user/${currentUser?.username}`)}>
+        onClick={() => navigate(`/user/${currentUser?.username}`)}
+      >
         View Profile
       </button>
     </div>

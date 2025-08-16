@@ -1,18 +1,22 @@
-import { Q1_DESC, Q3_DESC, Q4_DESC } from '../../../server/data/posts_strings';
+import { Q1_DESC, Q3_DESC, Q4_DESC } from "../../../server/data/posts_strings";
 
 describe("Cypress Tests to verify tagging", () => {
   beforeEach(() => {
     // Seed the database before each test
-    cy.exec("npx ts-node ../server/remove_db.ts mongodb://127.0.0.1:27017/fake_so");
-    cy.exec("npx ts-node ../server/populate_db.ts mongodb://127.0.0.1:27017/fake_so");
+    cy.exec(
+      "npx ts-node ../server/remove_db.ts mongodb://127.0.0.1:27017/fake_so",
+    );
+    cy.exec(
+      "npx ts-node ../server/populate_db.ts mongodb://127.0.0.1:27017/fake_so",
+    );
   });
 
   it("7.1 | Adds a question with tags, checks the tags existied", () => {
     cy.visit("http://localhost:3000");
-    cy.contains('Welcome to FakeStackOverflow!');
-    cy.get("#usernameInput").type("testuser")
+    cy.contains("Welcome to FakeStackOverflow!");
+    cy.get("#usernameInput").type("testuser");
     cy.contains("Submit").click();
-    
+
     // add a question with tags
     cy.contains("Ask a Question").click();
     cy.get("#formTitleInput").type("Test Question A");
@@ -29,23 +33,24 @@ describe("Cypress Tests to verify tagging", () => {
 
   it("7.2 | Checks if all tags exist", () => {
     cy.visit("http://localhost:3000");
-    cy.contains('Welcome to FakeStackOverflow!');
-    cy.get("#usernameInput").type("testuser")
+    cy.contains("Welcome to FakeStackOverflow!");
+    cy.get("#usernameInput").type("testuser");
     cy.contains("Submit").click();
     // all tags exist in the page
     cy.contains("Tags").click();
-    cy.contains("react", { matchCase: false });
-    cy.contains("javascript", { matchCase: false });
-    cy.contains("android-studio", { matchCase: false });
-    cy.contains("shared-preferences", { matchCase: false });
-    cy.contains("storage", { matchCase: false });
-    cy.contains("website", { matchCase: false });
+    cy.contains(/react/i);
+    cy.contains(/javascript/i);
+    cy.contains(/android-studio/i);
+    cy.contains(/shared-preferences/i);
+    cy.contains(/storage/i);
+    cy.contains(/website/i);
+
   });
 
   it("7.3 | Checks if all questions exist inside tags", () => {
     cy.visit("http://localhost:3000");
-    cy.contains('Welcome to FakeStackOverflow!');
-    cy.get("#usernameInput").type("testuser")
+    cy.contains("Welcome to FakeStackOverflow!");
+    cy.get("#usernameInput").type("testuser");
     cy.contains("Submit").click();
     // all question no. should be in the page
     cy.contains("Tags").click();
@@ -56,8 +61,8 @@ describe("Cypress Tests to verify tagging", () => {
 
   it("8.1 | go to question in tag react", () => {
     cy.visit("http://localhost:3000");
-    cy.contains('Welcome to FakeStackOverflow!');
-    cy.get("#usernameInput").type("testuser")
+    cy.contains("Welcome to FakeStackOverflow!");
+    cy.get("#usernameInput").type("testuser");
     cy.contains("Submit").click();
     // all question no. should be in the page
     cy.contains("Tags").click();
@@ -67,8 +72,8 @@ describe("Cypress Tests to verify tagging", () => {
 
   it("8.2 | go to questions in tag storage", () => {
     cy.visit("http://localhost:3000");
-    cy.contains('Welcome to FakeStackOverflow!');
-    cy.get("#usernameInput").type("testuser")
+    cy.contains("Welcome to FakeStackOverflow!");
+    cy.get("#usernameInput").type("testuser");
     cy.contains("Submit").click();
     // all question no. should be in the page
     cy.contains("Tags").click();
@@ -78,8 +83,8 @@ describe("Cypress Tests to verify tagging", () => {
 
   it("8.3 | create a new question with a new tag and finds the question through tag", () => {
     cy.visit("http://localhost:3000");
-    cy.contains('Welcome to FakeStackOverflow!');
-    cy.get("#usernameInput").type("testuser")
+    cy.contains("Welcome to FakeStackOverflow!");
+    cy.get("#usernameInput").type("testuser");
     cy.contains("Submit").click();
 
     // add a question with tags
@@ -99,8 +104,8 @@ describe("Cypress Tests to verify tagging", () => {
     const tagNames = "javascript";
 
     cy.visit("http://localhost:3000");
-    cy.contains('Welcome to FakeStackOverflow!');
-    cy.get("#usernameInput").type("testuser")
+    cy.contains("Welcome to FakeStackOverflow!");
+    cy.get("#usernameInput").type("testuser");
     cy.contains("Submit").click();
     cy.contains("Tags").click();
 
@@ -114,8 +119,8 @@ describe("Cypress Tests to verify tagging", () => {
     const tagNames = "storage";
 
     cy.visit("http://localhost:3000");
-    cy.contains('Welcome to FakeStackOverflow!');
-    cy.get("#usernameInput").type("testuser")
+    cy.contains("Welcome to FakeStackOverflow!");
+    cy.get("#usernameInput").type("testuser");
     cy.contains("Submit").click();
 
     //clicks the 3rd tag associated with the question.

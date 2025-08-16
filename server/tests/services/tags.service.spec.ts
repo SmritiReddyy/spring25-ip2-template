@@ -3,7 +3,6 @@ import QuestionModel from '../../models/questions.model';
 import { addTag, processTags, getTagCountMap } from '../../services/tag.service';
 import { QUESTIONS, tag1, tag2, tag3 } from '../mockData.models';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const mockingoose = require('mockingoose');
 
 describe('Tag model', () => {

@@ -51,7 +51,8 @@ const QuestionView = ({ q }: QuestionProps) => {
         if (q._id) {
           handleAnswer(q._id);
         }
-      }}>
+      }}
+    >
       <div className='postStats'>
         <div>{q.answers.length || 0} answers</div>
         <div>{q.views.length} views</div>
@@ -66,7 +67,8 @@ const QuestionView = ({ q }: QuestionProps) => {
               onClick={e => {
                 e.stopPropagation();
                 clickTag(tag.name);
-              }}>
+              }}
+            >
               {tag.name}
             </button>
           ))}

@@ -30,7 +30,8 @@ const TagView = ({ t, clickTag }: TagProps) => {
       className='tagNode'
       onClick={() => {
         clickTag(t.name);
-      }}>
+      }}
+    >
       <div className='tagName'>{tag.name}</div>
       <div className='tagDescription'>{tag.description}</div>
       <div>{t.qcnt} questions</div>

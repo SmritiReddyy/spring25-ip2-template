@@ -1,22 +1,25 @@
-import { Q1_DESC, A1_TXT, A2_TXT } from '../../../server/data/posts_strings';
+import { Q1_DESC, A1_TXT, A2_TXT } from "../../../server/data/posts_strings";
 
 describe("Cypress Tests repeated to verify adding hyperlinks to text", () => {
   beforeEach(() => {
     // Seed the database before each test
-    cy.exec("npx ts-node ../server/remove_db.ts mongodb://127.0.0.1:27017/fake_so");
-    cy.exec("npx ts-node ../server/populate_db.ts mongodb://127.0.0.1:27017/fake_so");
+    cy.exec(
+      "npx ts-node ../server/remove_db.ts mongodb://127.0.0.1:27017/fake_so",
+    );
+    cy.exec(
+      "npx ts-node ../server/populate_db.ts mongodb://127.0.0.1:27017/fake_so",
+    );
   });
-
 
   it("9.1 | Adds a question with a hyperlink and verifies", () => {
     cy.visit("http://localhost:3000");
-    cy.contains('Welcome to FakeStackOverflow!');
-    cy.get("#usernameInput").type("testuser")
+    cy.contains("Welcome to FakeStackOverflow!");
+    cy.get("#usernameInput").type("testuser");
     cy.contains("Submit").click();
     cy.contains("Ask a Question").click();
     cy.get("#formTitleInput").type("How to add a hyperlink in Markdown?");
     cy.get("#formTextInput").type(
-      "Here is a link: [Google](https://www.google.com)"
+      "Here is a link: [Google](https://www.google.com)",
     );
     cy.get("#formTagInput").type("markdown");
     cy.contains("Post Question").click();
@@ -33,13 +36,13 @@ describe("Cypress Tests repeated to verify adding hyperlinks to text", () => {
       A2_TXT,
     ];
     cy.visit("http://localhost:3000");
-    cy.contains('Welcome to FakeStackOverflow!');
-    cy.get("#usernameInput").type("testuser")
+    cy.contains("Welcome to FakeStackOverflow!");
+    cy.get("#usernameInput").type("testuser");
     cy.contains("Submit").click();
     cy.contains(Q1_DESC).click();
     cy.contains("Answer Question").click();
     cy.get("#answerTextInput").type(
-      "Check this link for more info: [Documentation](https://docs.example.com)"
+      "Check this link for more info: [Documentation](https://docs.example.com)",
     );
     cy.contains("Post Answer").click();
     cy.get(".answerText")
@@ -74,12 +77,12 @@ describe("Cypress Tests repeated to verify adding hyperlinks to text", () => {
       "[Wikipedia](tps://www.wikipedia=com)",
     ];
     cy.visit("http://localhost:3000");
-    cy.contains('Welcome to FakeStackOverflow!');
-    cy.get("#usernameInput").type("testuser")
+    cy.contains("Welcome to FakeStackOverflow!");
+    cy.get("#usernameInput").type("testuser");
     cy.contains("Submit").click();
     cy.contains("Ask a Question").click();
     cy.get("#formTitleInput").type(
-      "How to add an invalid hyperlink in Markdown?"
+      "How to add an invalid hyperlink in Markdown?",
     );
     invalidUrls.forEach((url) => {
       cy.get("#formTextInput").clear().type(`This is an invalid link: ${url}`);
@@ -88,29 +91,29 @@ describe("Cypress Tests repeated to verify adding hyperlinks to text", () => {
       cy.contains("Invalid hyperlink");
     });
     cy.visit("http://localhost:3000");
-    cy.contains('Welcome to FakeStackOverflow!');
-    cy.get("#usernameInput").type("testuser")
+    cy.contains("Welcome to FakeStackOverflow!");
+    cy.get("#usernameInput").type("testuser");
     cy.contains("Submit").click();
     cy.contains("How to add an invalid hyperlink in Markdown?").should(
-      "not.exist"
+      "not.exist",
     );
   });
 
   it("9.4 | Attempts to add an answer with an invalid hyperlink and verifies failure", () => {
     cy.visit("http://localhost:3000");
-    cy.contains('Welcome to FakeStackOverflow!');
-    cy.get("#usernameInput").type("testuser")
+    cy.contains("Welcome to FakeStackOverflow!");
+    cy.get("#usernameInput").type("testuser");
     cy.contains("Submit").click();
     cy.contains(Q1_DESC).click();
     cy.contains("Answer Question").click();
     cy.get("#answerTextInput").type(
-      "Check this invalid link: [](https://wrong.url)"
+      "Check this invalid link: [](https://wrong.url)",
     );
     cy.contains("Post Answer").click();
     cy.contains("Invalid hyperlink");
     cy.visit("http://localhost:3000");
-    cy.contains('Welcome to FakeStackOverflow!');
-    cy.get("#usernameInput").type("testuser")
+    cy.contains("Welcome to FakeStackOverflow!");
+    cy.get("#usernameInput").type("testuser");
     cy.contains("Submit").click();
     cy.contains(Q1_DESC).click();
     cy.get(".answerText").should("not.contain", "https://wrong.url");
@@ -118,8 +121,8 @@ describe("Cypress Tests repeated to verify adding hyperlinks to text", () => {
 
   it("9.5 | Adds multiple questions with valid hyperlinks and verify", () => {
     cy.visit("http://localhost:3000");
-    cy.contains('Welcome to FakeStackOverflow!');
-    cy.get("#usernameInput").type("testuser")
+    cy.contains("Welcome to FakeStackOverflow!");
+    cy.get("#usernameInput").type("testuser");
     cy.contains("Submit").click();
 
     // List of question data

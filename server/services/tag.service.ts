@@ -90,7 +90,7 @@ export const processTags = async (tags: Tag[]): Promise<Tag[]> => {
   } catch (error: unknown) {
     // Log the error for debugging purposes
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    // eslint-disable-next-line no-console
+
     console.log('An error occurred while adding tags:', errorMessage);
     return [];
   }

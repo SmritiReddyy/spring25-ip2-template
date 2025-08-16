@@ -87,4 +87,8 @@ export interface UserUpdatePayload {
  */
 export interface UpdateBiographyRequest extends Request {
   // TODO: Task 1 - Define the request interface for updating a user's biography
+  body: {
+    username: string;
+    biography: string;
+  };
 }

@@ -174,7 +174,12 @@ async function questionCreate(
   return await QuestionModel.create(questionDetail);
 }
 
-async function userCreate(username: string, password: string, dateJoined: Date, biography?: string): Promise<User> {
+async function userCreate(
+  username: string,
+  password: string,
+  dateJoined: Date,
+  biography?: string,
+): Promise<User> {
   if (username === '' || password === '' || dateJoined === null) {
     throw new Error('Invalid User Format');
   }
@@ -195,19 +200,69 @@ async function userCreate(username: string, password: string, dateJoined: Date, 
  */
 const populate = async () => {
   try {
-    await userCreate('sana', 'sanaPassword', new Date('2023-12-11T03:30:00'), 'I am a software engineer.');
-    await userCreate('ihba001', 'SomePassword#123', new Date('2022-12-11T03:30:00'), 'I am a student.');
-    await userCreate('saltyPeter', 'VeryStrongPassword#!@', new Date('2023-12-11T03:30:00'), 'I am a chef.');
+    await userCreate(
+      'sana',
+      'sanaPassword',
+      new Date('2023-12-11T03:30:00'),
+      'I am a software engineer.',
+    );
+    await userCreate(
+      'ihba001',
+      'SomePassword#123',
+      new Date('2022-12-11T03:30:00'),
+      'I am a student.',
+    );
+    await userCreate(
+      'saltyPeter',
+      'VeryStrongPassword#!@',
+      new Date('2023-12-11T03:30:00'),
+      'I am a chef.',
+    );
     await userCreate('monkeyABC', 'password', new Date('2023-11-11T03:30:00'), 'I am a monkey.');
     await userCreate('hamkalo', 'redapplecar', new Date('2023-12-02T03:30:00'), 'I am a hamster.');
-    await userCreate('azad', 'treeorangeBike', new Date('2023-06-11T03:30:00'), 'I am a free spirit.');
-    await userCreate('abhi3241', '112@realpassword', new Date('2023-01-12T03:30:00'), 'I am a student.');
-    await userCreate('Joji John', 'jurassicPark#12', new Date('2023-10-11T03:30:00'), 'I like Jurassic Park.');
-    await userCreate('abaya', 'letmein', new Date('2023-04-20T03:30:00'), 'I like fashion designing.');
-    await userCreate('mackson3332', 'TrIcKyPhRaSe', new Date('2023-07-26T03:30:00'), 'I am a magician.');
-    await userCreate('alia', 'correcthorsebatterystaple', new Date('2023-03-19T03:30:00'), 'I am an actress.');
-    await userCreate('elephantCDE','ElephantPass123',new Date('2023-05-10T14:28:01'),'I am an elephant lover.');
-    
+    await userCreate(
+      'azad',
+      'treeorangeBike',
+      new Date('2023-06-11T03:30:00'),
+      'I am a free spirit.',
+    );
+    await userCreate(
+      'abhi3241',
+      '112@realpassword',
+      new Date('2023-01-12T03:30:00'),
+      'I am a student.',
+    );
+    await userCreate(
+      'Joji John',
+      'jurassicPark#12',
+      new Date('2023-10-11T03:30:00'),
+      'I like Jurassic Park.',
+    );
+    await userCreate(
+      'abaya',
+      'letmein',
+      new Date('2023-04-20T03:30:00'),
+      'I like fashion designing.',
+    );
+    await userCreate(
+      'mackson3332',
+      'TrIcKyPhRaSe',
+      new Date('2023-07-26T03:30:00'),
+      'I am a magician.',
+    );
+    await userCreate(
+      'alia',
+      'correcthorsebatterystaple',
+      new Date('2023-03-19T03:30:00'),
+      'I am an actress.',
+    );
+    await userCreate(
+      'elephantCDE',
+      'ElephantPass123',
+      new Date('2023-05-10T14:28:01'),
+      'I am an elephant lover.',
+    );
+
     const t1 = await tagCreate(T1_NAME, T1_DESC);
     const t2 = await tagCreate(T2_NAME, T2_DESC);
     const t3 = await tagCreate(T3_NAME, T3_DESC);

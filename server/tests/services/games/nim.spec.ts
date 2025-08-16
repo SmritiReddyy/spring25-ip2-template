@@ -3,7 +3,6 @@ import NimGame from '../../../services/games/nim';
 import { GameInstance, GameMove, NimGameState, NimMove } from '../../../types/game';
 import { MAX_NIM_OBJECTS } from '../../../types/gameConstants';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const mockingoose = require('mockingoose');
 
 describe('NimGame tests', () => {

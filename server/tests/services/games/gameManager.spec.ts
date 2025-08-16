@@ -4,7 +4,6 @@ import NimGame from '../../../services/games/nim';
 import { GameInstance, GameInstanceID, NimGameState } from '../../../types/game';
 import { GameType, MAX_NIM_OBJECTS } from '../../../types/gameConstants';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const mockingoose = require('mockingoose');
 
 jest.mock('nanoid', () => ({

@@ -36,8 +36,25 @@ const NimGamePage = ({ gameState }: { gameState: GameInstance }) => {
           - Remaining Objects: The number of objects remaining in the pile.
           - Winner: The winner of the game, or "No winner" if the winner is not defined. (Conditionally rendered)
         */}
-        {/* TODO: Task 2 - Conditionally render game move input for an in progress game */}
-        {
+        <p>
+          <strong>Player 1:</strong> {gameState.state.player1 || 'Waiting...'}
+        </p>
+        <p>
+          <strong>Player 2:</strong> {gameState.state.player2 || 'Waiting...'}
+        </p>
+        <p>
+          <strong>Current Player to Move:</strong>{' '}
+          {gameState.players[gameState.state.moves.length % 2]}
+        </p>
+        <p>
+          <strong>Remaining Objects:</strong> {gameState.state.remainingObjects}
+        </p>
+        {gameState.state.status === 'OVER' && (
+          <p>
+            <strong>Winner:</strong> {gameState.state.winners?.join(', ') || 'No winner'}
+          </p>
+        )}
+        {gameState.state.status === 'IN_PROGRESS' && (
           <div className='nim-game-move'>
             <h3>Make Your Move</h3>
             {/* TODO: Task 2 - Implement the input field which takes a number input.
@@ -45,8 +62,25 @@ const NimGamePage = ({ gameState }: { gameState: GameInstance }) => {
             {/* TODO: Task 2 - Implement the submit button which submits the entered move.
             The button should be disabled if it is not the user's turn.
             Use the class name 'btn-submit' for styling. */}
+
+            <input
+              type='number'
+              className='input-move'
+              value={move}
+              onChange={handleInputChange}
+              min='1'
+              max='3'
+              placeholder='Enter 1-3'
+            />
+            <button
+              className='btn-submit'
+              onClick={handleMakeMove}
+              disabled={gameState.players[gameState.state.moves.length % 2] !== user.username}
+            >
+              Submit Move
+            </button>
           </div>
-        }
+        )}
       </div>
     </>
   );

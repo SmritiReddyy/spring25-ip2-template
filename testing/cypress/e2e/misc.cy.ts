@@ -1,19 +1,26 @@
-import { Q1_DESC, Q2_DESC, Q3_DESC, Q4_DESC } from '../../../server/data/posts_strings';
+import {
+  Q1_DESC,
+  Q2_DESC,
+  Q3_DESC,
+  Q4_DESC,
+} from "../../../server/data/posts_strings";
 
 describe("Cypress Tests for verifying active order and initial test data", () => {
   beforeEach(() => {
     // Seed the database before each test
-    cy.exec("npx ts-node ../server/remove_db.ts mongodb://127.0.0.1:27017/fake_so");
-    cy.exec("npx ts-node ../server/populate_db.ts mongodb://127.0.0.1:27017/fake_so");
+    cy.exec(
+      "npx ts-node ../server/remove_db.ts mongodb://127.0.0.1:27017/fake_so",
+    );
+    cy.exec(
+      "npx ts-node ../server/populate_db.ts mongodb://127.0.0.1:27017/fake_so",
+    );
   });
-
 
   it("6.1 | Adds a question, click active button, verifies the sequence", () => {
     cy.visit("http://localhost:3000");
-    cy.contains('Welcome to FakeStackOverflow!');
-    cy.get("#usernameInput").type("testuser")
+    cy.contains("Welcome to FakeStackOverflow!");
+    cy.get("#usernameInput").type("testuser");
     cy.contains("Submit").click();
-
 
     // add a question
     cy.contains("Ask a Question").click();
@@ -32,9 +39,7 @@ describe("Cypress Tests for verifying active order and initial test data", () =>
     cy.contains("Questions").click();
 
     // add an answer to question of Android Studio
-    cy.contains(
-      Q2_DESC
-    ).click();
+    cy.contains(Q2_DESC).click();
     cy.contains("Answer Question").click();
     cy.get("#answerTextInput").type("Answer to android studio");
     cy.contains("Post Answer").click();
@@ -54,13 +59,7 @@ describe("Cypress Tests for verifying active order and initial test data", () =>
     // clicks active
     cy.contains("Active").click();
 
-    const qTitles = [
-      "Test Question A",
-      Q2_DESC,
-      Q1_DESC,
-      Q4_DESC,
-      Q3_DESC,
-    ];
+    const qTitles = ["Test Question A", Q2_DESC, Q1_DESC, Q4_DESC, Q3_DESC];
     cy.get(".postTitle").each(($el, index, $list) => {
       cy.wrap($el).should("contain", qTitles[index]);
     });
@@ -72,8 +71,8 @@ describe("Cypress Tests for verifying active order and initial test data", () =>
       "Storing content as BLOBs in databases.",
     ];
     cy.visit("http://localhost:3000");
-    cy.contains('Welcome to FakeStackOverflow!');
-    cy.get("#usernameInput").type("testuser")
+    cy.contains("Welcome to FakeStackOverflow!");
+    cy.get("#usernameInput").type("testuser");
     cy.contains("Submit").click();
 
     cy.contains(Q3_DESC).click();
@@ -84,8 +83,8 @@ describe("Cypress Tests for verifying active order and initial test data", () =>
 
   it("6.3 | Checks if a8 exist in q4 answers page", () => {
     cy.visit("http://localhost:3000");
-    cy.contains('Welcome to FakeStackOverflow!');
-    cy.get("#usernameInput").type("testuser")
+    cy.contains("Welcome to FakeStackOverflow!");
+    cy.get("#usernameInput").type("testuser");
     cy.contains("Submit").click();
     cy.contains(Q4_DESC).click();
     cy.contains("Store data in a SQLLite database.");

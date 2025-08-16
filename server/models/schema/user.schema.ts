@@ -24,6 +24,10 @@ const userSchema: Schema = new Schema(
     },
     // TODO: Task 1 - Add a field for the user's biography
     // This is an optional field, which should have a default value of empty
+    biography: {
+      type: String,
+      default: '',
+    },
   },
   { collection: 'User' },
 );

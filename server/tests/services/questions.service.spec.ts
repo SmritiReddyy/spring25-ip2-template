@@ -10,7 +10,6 @@ import {
 import { Question } from '../../types/types';
 import { QUESTIONS, tag1, tag2, ans1, ans2, ans3, ans4 } from '../mockData.models';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const mockingoose = require('mockingoose');
 
 describe('Question model', () => {

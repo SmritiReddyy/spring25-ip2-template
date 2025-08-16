@@ -25,7 +25,6 @@ const useUsersListPage = () => {
         const res = await getUsers();
         setUserList(res || []);
       } catch (error) {
-        // eslint-disable-next-line no-console
         console.log(error);
       }
     };
@@ -36,10 +35,8 @@ const useUsersListPage = () => {
      * @param user the user to remove
      * @returns a list without the given user
      */
-    const removeUserFromList = (prevUserList: User[], user: User) => {
-      // TODO: Task 1 - Implement the function to remove a user from the list
-    };
-
+    const removeUserFromList = (prevUserList: User[], user: User) =>
+      prevUserList.filter(otherUser => user.username !== otherUser.username);
     /**
      * Adds a user to the userList, if not present. Otherwise updates the user.
      * @param prevUserList the list of users
@@ -49,6 +46,16 @@ const useUsersListPage = () => {
     const addUserToList = (prevUserList: User[], user: User) => {
       // TODO: Task 1 - Implement the function to add or update a user in the list
       // Add the user to the front of the list if it doesn't already exist
+      const userExists = prevUserList.some(otherUser => otherUser.username === user.username);
+
+      if (userExists) {
+        // Update the existing user
+        return prevUserList.map(otherUser =>
+          otherUser.username === user.username ? user : otherUser,
+        );
+      }
+
+      return [user, ...prevUserList];
     };
 
     /**
@@ -58,6 +65,16 @@ const useUsersListPage = () => {
      */
     const handleModifiedUserUpdate = (userUpdate: UserUpdatePayload) => {
       // TODO: Task 1 - Update the user list based on the user update type.
+      setUserList(prevUserList => {
+        switch (userUpdate.type) {
+          case 'created':
+            return addUserToList(prevUserList, userUpdate.user);
+          case 'deleted':
+            return removeUserFromList(prevUserList, userUpdate.user);
+          default:
+            throw new Error('Invalid user update type');
+        }
+      });
     };
 
     fetchData();
@@ -70,7 +87,7 @@ const useUsersListPage = () => {
   }, [socket]);
 
   // TODO: Task 1 - Filter the user list based on the userFilter value
-  const filteredUserlist = [];
+  const filteredUserlist = userList.filter(user => user.username.includes(userFilter));
   return { userList: filteredUserlist, setUserFilter };
 };
 

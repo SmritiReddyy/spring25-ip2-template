@@ -3,7 +3,6 @@ import findGames from '../../services/game.service';
 import { GameInstance, NimGameState } from '../../types/game';
 import { MAX_NIM_OBJECTS } from '../../types/gameConstants';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const mockingoose = require('mockingoose');
 
 const gameState1: GameInstance<NimGameState> = {

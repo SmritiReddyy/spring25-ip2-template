@@ -2,7 +2,6 @@ import MessageModel from '../../models/messages.model';
 import { getMessages, saveMessage } from '../../services/message.service';
 import { Message } from '../../types/message';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const mockingoose = require('mockingoose');
 
 const message1: Message = {

@@ -45,12 +45,14 @@ const VoteComponent = ({ question }: VoteComponentProps) => {
     <div className='vote-container'>
       <button
         className={`vote-button ${voted === 1 ? 'vote-button-upvoted' : ''}`}
-        onClick={() => handleVote('upvote')}>
+        onClick={() => handleVote('upvote')}
+      >
         Upvote
       </button>
       <button
         className={`vote-button ${voted === -1 ? 'vote-button-downvoted' : ''}`}
-        onClick={() => handleVote('downvote')}>
+        onClick={() => handleVote('downvote')}
+      >
         Downvote
       </button>
       <span className='vote-count'>{count}</span>

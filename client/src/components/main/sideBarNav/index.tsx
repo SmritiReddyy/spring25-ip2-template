@@ -23,32 +23,37 @@ const SideBarNav = () => {
       <NavLink
         to='/home'
         id='menu_questions'
-        className={({ isActive }) => `menu_button ${isActive ? 'menu_selected' : ''}`}>
+        className={({ isActive }) => `menu_button ${isActive ? 'menu_selected' : ''}`}
+      >
         Questions
       </NavLink>
       <NavLink
         to='/tags'
         id='menu_tag'
-        className={({ isActive }) => `menu_button ${isActive ? 'menu_selected' : ''}`}>
+        className={({ isActive }) => `menu_button ${isActive ? 'menu_selected' : ''}`}
+      >
         Tags
       </NavLink>
       <NavLink
         to='/messaging'
         id='menu_messaging'
         className={({ isActive }) => `menu_button ${isActive ? 'menu_selected' : ''}`}
-        onClick={toggleOptions}>
+        onClick={toggleOptions}
+      >
         Messaging
       </NavLink>
       {showOptions && (
         <div className='additional-options'>
           <NavLink
             to='/messaging'
-            className={`menu_button message-options ${isActiveOption('/messaging')}`}>
+            className={`menu_button message-options ${isActiveOption('/messaging')}`}
+          >
             Global Messages
           </NavLink>
           <NavLink
             to='/messaging/direct-message'
-            className={`menu_button message-options ${isActiveOption('/messaging/direct-message')}`}>
+            className={`menu_button message-options ${isActiveOption('/messaging/direct-message')}`}
+          >
             Direct Messages
           </NavLink>
         </div>
@@ -56,13 +61,15 @@ const SideBarNav = () => {
       <NavLink
         to='/users'
         id='menu_users'
-        className={({ isActive }) => `menu_button ${isActive ? 'menu_selected' : ''}`}>
+        className={({ isActive }) => `menu_button ${isActive ? 'menu_selected' : ''}`}
+      >
         Users
       </NavLink>
       <NavLink
         to='/games'
         id='menu_games'
-        className={({ isActive }) => `menu_button ${isActive ? 'menu_selected' : ''}`}>
+        className={({ isActive }) => `menu_button ${isActive ? 'menu_selected' : ''}`}
+      >
         Games
       </NavLink>
     </div>
